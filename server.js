@@ -2,16 +2,17 @@ const express = require('express')
 const path = require('path')
 const Rollbar = require('rollbar')
 
+
+const app = express()
+app.use(express.json())
+
 const rollbar = new Rollbar({
     accessToken: '90ae000da3f448c8ab5aadbee0618d1d',
     captureUncaught: true,
     captureUnhandledRejections: true
 })
 
-const app = express()
-
 const students = []
-
 
 app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, './public/index.html'))
